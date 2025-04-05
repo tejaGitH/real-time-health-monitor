@@ -23,21 +23,21 @@ const Overview = () => {
   const latestVitals =
     vitalsData.length > 0 ? vitalsData[vitalsData.length - 1] : { heartRate: 0, spo2: 0 };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (deviceStatus.watchConnected && deviceStatus.mobileAppActive) {
-        const now = new Date();
-        const newPoint = {
-          time: now.toLocaleTimeString().slice(0, 5),
-          heartRate: 65 + Math.floor(Math.random() * 20),
-          spo2: 97 + Math.floor(Math.random() * 3),
-        };
-        dispatch(addVitalsData(newPoint));
-      }
-    }, 3000);
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       if (deviceStatus.watchConnected && deviceStatus.mobileAppActive) {
+//         const now = new Date();
+//         const newPoint = {
+//           time: now.toLocaleTimeString().slice(0, 5),
+//           heartRate: 65 + Math.floor(Math.random() * 20),
+//           spo2: 97 + Math.floor(Math.random() * 3),
+//         };
+//         dispatch(addVitalsData(newPoint));
+//       }
+//     }, 3000);
 
-    return () => clearInterval(interval);
-  }, [dispatch, deviceStatus]);
+//     return () => clearInterval(interval);
+//   }, [dispatch, deviceStatus]);
 
   return (
     <div>
