@@ -43,6 +43,7 @@ const Overview = () => {
     <div>
       <h2 className="text-2xl font-bold text-blue-600 mb-4">Overview</h2>
 
+      {/* Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Vitals Summary */}
         <div className="bg-white p-4 rounded-lg shadow">
@@ -63,7 +64,7 @@ const Overview = () => {
         </div>
       </div>
 
-      {/* Toggle Controls */}
+      {/* Toggle Buttons */}
       <div className="flex gap-4 mt-4">
         <button
           onClick={() => dispatch(toggleWatchConnection())}
@@ -79,7 +80,7 @@ const Overview = () => {
         </button>
       </div>
 
-      {/* Chart Section */}
+      {/* Heart Rate Chart */}
       <div className="bg-white p-4 rounded-lg shadow mt-6">
         <h3 className="text-lg font-semibold text-gray-800 mb-2">Heart Rate Trends</h3>
         <ResponsiveContainer width="100%" height={300}>
@@ -91,7 +92,28 @@ const Overview = () => {
             <Line
               type="monotone"
               dataKey="heartRate"
-              stroke="#3b82f6"
+              stroke="#ef4444"
+              strokeWidth={2}
+              dot={{ r: 3 }}
+              activeDot={{ r: 5 }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* SpO2 Chart */}
+      <div className="bg-white p-4 rounded-lg shadow mt-6">
+        <h3 className="text-lg font-semibold text-gray-800 mb-2">SpO2 Trends</h3>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={vitalsData}>
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis dataKey="time" />
+            <YAxis domain={[95, 100]} />
+            <Tooltip />
+            <Line
+              type="monotone"
+              dataKey="spo2"
+              stroke="#10b981"
               strokeWidth={2}
               dot={{ r: 3 }}
               activeDot={{ r: 5 }}
